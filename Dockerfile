@@ -26,7 +26,7 @@
 
 FROM        --platform=$TARGETOS/$TARGETARCH ubuntu:latest
 
-LABEL       author="RyanBuzar" # maintainer="109171271+RyanBuzar@users.noreply.github.com"
+LABEL       author="RyanBuzar" maintainer="109171271+RyanBuzar@users.noreply.github.com"
 LABEL       org.opencontainers.image.licenses=MIT
 
 RUN         groupadd -g 987 pterodactyl\
