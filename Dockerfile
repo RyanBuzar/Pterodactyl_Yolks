@@ -19,12 +19,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
+# Created from author="oliver194" maintainer="100048880+oliver194@users.noreply.github.com"
+# 
+# keeping this to format the label for the image source for later once it is published
+# LABEL org.opencontainers.image.source="https://github.com/oliver194/yolks"
 
 FROM        --platform=$TARGETOS/$TARGETARCH ubuntu:latest
-# Created from author="oliver194" maintainer="100048880+oliver194@users.noreply.github.com"
 
 LABEL       author="RyanBuzar" # maintainer="109171271+RyanBuzar@users.noreply.github.com"
-# LABEL       org.opencontainers.image.source="https://github.com/oliver194/yolks"
 LABEL       org.opencontainers.image.licenses=MIT
 
 RUN         groupadd -g 987 pterodactyl\
