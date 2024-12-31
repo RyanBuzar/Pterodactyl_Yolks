@@ -29,20 +29,20 @@ FROM        --platform=$TARGETOS/$TARGETARCH ubuntu:latest
 LABEL       author="RyanBuzar" maintainer="109171271+RyanBuzar@users.noreply.github.com"
 LABEL       org.opencontainers.image.licenses=MIT
 
-RUN         groupadd -g 987 pterodactyl\
-	    && useradd -u 999 -m -G pterodactyl pterodactyl\
-	    && usermod -a -G pterodactyl pterodactyl
-
-# RUN         apt update \
-		# && apt full-upgrade -y \
-		# && apt -y zip unzip install ca-certificates curl wget git unzip zip tar jq passwd sudo\
-		# && echo "pterodactyl ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/pterodactyl
+# RUN         groupadd -g 987 pterodactyl\
+	    # && useradd -u 999 -m -G pterodactyl pterodactyl\
+	    # && usermod -a -G pterodactyl pterodactyl
 
 RUN groupadd -g 987 pterodactyl
 
 RUN useradd -u 999 -m -G pterodactyl pterodactyl
 
 RUN usermod -a -G pterodactyl pterodactyl
+
+RUN         apt update \
+		&& apt full-upgrade -y \
+		&& apt -y zip unzip install ca-certificates curl wget git unzip zip tar jq passwd sudo\
+		&& echo "pterodactyl ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/pterodactyl
 
 USER pterodactyl
 
