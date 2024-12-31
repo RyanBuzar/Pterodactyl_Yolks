@@ -45,7 +45,7 @@ RUN if id -u 999 >/dev/null 2>&1; then \
 
 RUN apt update \
         && apt full-upgrade -y \
-	&& apt -y zip unzip install ca-certificates curl wget git unzip zip tar jq passwd sudo\
+	&& apt install -y zip unzip ca-certificates curl wget git unzip zip tar jq passwd sudo\
 	&& echo "999 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/999
 
 USER pterodactyl
