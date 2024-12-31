@@ -33,11 +33,14 @@ LABEL       org.opencontainers.image.licenses=MIT
 	    # && useradd -u 999 -m -G pterodactyl pterodactyl\
 	    # && usermod -a -G pterodactyl pterodactyl
 
-RUN groupadd -g 987 pterodactyl
+RUN	    groupadd -g 987 pterodactyl
 
-RUN useradd -u 999 -m -G pterodactyl pterodactyl
-
-RUN usermod -a -G pterodactyl pterodactyl
+            # Check if user with UID 999 exists and add to pterodactyl group if they do
+RUN         if id -u 999 >/dev/null 2>&1; then \
+                usermod -a -G pterodactyl 999 && echo "User with UID 999 already exists. Adding to Group 987.";\
+            else\ 
+                useradd -u 999 -m -G pterodactyl pterodactyl && echo "User 999 does not exist. Creating now.";\
+            fi
 
 RUN         apt update \
 		&& apt full-upgrade -y \
