@@ -24,28 +24,28 @@
 # keeping this to format the label for the image source for later once it is published
 # LABEL org.opencontainers.image.source="https://github.com/oliver194/yolks"
 
-FROM        --platform=$TARGETOS/$TARGETARCH ubuntu:latest
+FROM --platform=$TARGETOS/$TARGETARCH ubuntu:latest
 
-LABEL       author="RyanBuzar" maintainer="109171271+RyanBuzar@users.noreply.github.com"
-LABEL       org.opencontainers.image.licenses=MIT
+LABEL author="RyanBuzar" maintainer="109171271+RyanBuzar@users.noreply.github.com"
+LABEL org.opencontainers.image.licenses=MIT
 
 # RUN         groupadd -g 987 pterodactyl\
 	    # && useradd -u 999 -m -G pterodactyl pterodactyl\
 	    # && usermod -a -G pterodactyl pterodactyl
 
-RUN	    groupadd -g 987 pterodactyl
+RUN groupadd -g 987 pterodactyl
 
-            # Check if user with UID 999 exists and add to pterodactyl group if they do
-RUN         if id -u 999 >/dev/null 2>&1; then \
-                usermod -a -G pterodactyl 999 && echo "User with UID 999 already exists. Adding to Group 987.";\
-            else\ 
-                useradd -u 999 -m -G pterodactyl pterodactyl && echo "User 999 does not exist. Creating now.";\
-            fi
+# Check if user with UID 999 exists and add to pterodactyl group if they do
+RUN if id -u 999 >/dev/null 2>&1; then \
+        usermod -a -G pterodactyl 999 && echo "User with UID 999 already exists. Adding to Group 987."; \
+    else \ 
+        useradd -u 999 -m -G pterodactyl pterodactyl && echo "User 999 does not exist. Creating now."; \
+    fi
 
-RUN         apt update \
-		&& apt full-upgrade -y \
-		&& apt -y zip unzip install ca-certificates curl wget git unzip zip tar jq passwd sudo\
-		&& echo "pterodactyl ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/pterodactyl
+RUN apt update \
+        && apt full-upgrade -y \
+	&& apt -y zip unzip install ca-certificates curl wget git unzip zip tar jq passwd sudo\
+	&& echo "999 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/999
 
 USER pterodactyl
 
